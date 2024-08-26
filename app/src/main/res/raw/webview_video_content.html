@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Video Player</title>
+
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                padding: 0px;
+                height: 100vh;
+                overflow: hidden;
+                position: relative;
+                background-alpha: transparent;
+                background: transparent;
+            }
+
+            .button-container {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+            }
+
+            .control-button {
+                margin: 5px;
+                width: 60px;
+                height: 60px;
+                font-size: 16px;
+                border-radius: 5px;
+                transform: translateX(-50%);
+                display: flex;
+                cursor: pointer;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            video {
+                max-width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column
+            }
+            .popup {
+                display: block;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                z-index: 9;
+                transform: translate(-50%, -50%);
+                background-color: rgba(125, 125, 125, 0.8);
+                color: white;
+                padding: 20px;
+                ele
+                border-radius: 10px;
+                text-align: center;
+            }
+            .popup button {
+                margin-top: 10px;
+                padding: 10px 20px;
+                background-color: #0f0f0f;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div
+                id="popup"
+                class="popup">
+            <h1 style="...">
+                <bold>
+                    <p>Thank you for watching this video!</p>
+                    <p>by Vijayanand</p>
+                </bold>
+            </h1>
+            <button
+                    style="width: 200px; height: 60px; font-size : 25px"
+                    onclick="closePopup()">Close
+            </button>
+        </div>
+
+        <div
+                class="button-container"
+                id="buttonContainer">
+            <button
+                    id="playbutton"
+                    type="image"
+                    class="control-button"
+                    onclick="playVideo()">
+                <img src="icons_play.png">
+            </button>
+            <button
+                    id="pausebutton"
+                    class="control-button"
+                    onclick="pauseVideo()">
+                <img src="icons_pause.png">
+            </button>
+            <button
+                    id="stopbutton"
+                    class="control-button"
+                    onclick="stopVideo()">
+                <img src="icons_stop.png">
+            </button>
+            <button
+                    id="speedbutton"
+                    class="control-button"
+                    onclick="speedVideo()">
+                <img src="icons_speed.png">
+            </button>
+
+        </div>
+
+
+        <script type="text/javascript">
+            function playVideo() {
+                console.log('Play button clicked');
+                Android.performAction("play");
+                closePopup();
+                playingVideo();
+            }
+
+            function pauseVideo() {
+                console.log('pause button clicked');
+                Android.performAction("pause");
+                pausingVideo();
+            }
+
+            function stopVideo() {
+                console.log('Stop button clicked');
+                Android.performAction("stop");
+                pausingVideo();
+                showPopup();
+
+            }
+
+            function showControlButtons() {
+                buttonContainer.style.display = 'block'
+            }
+
+            function hideControlButtons() {
+                buttonContainer.style.display = 'none'
+            }
+
+            function showPopup() {
+                console.log('showPopup script');
+                popup.style.display = 'block';
+            }
+
+            function closePopup() {
+                console.log('closePopup script');
+                popup.style.display = 'none';
+            }
+
+            function speedVideo() {
+                console.log('speed button clicked');
+                Android.performAction("speed")
+            }
+
+
+            function playingVideo() {
+                console.log('playingVideo script');
+                pausebutton.style.display = 'block';
+                playbutton.style.display = 'none';
+            }
+
+            function pausingVideo() {
+                console.log('pausingVideo script');
+                pausebutton.style.display = 'none';
+                playbutton.style.display = 'block';
+            }
+        </script>
+    </body>
+</html>
